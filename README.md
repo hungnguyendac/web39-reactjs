@@ -5,3 +5,6 @@
 ## Tiêu đề h2
 ### Tiêu đề h3
 #### Tiêu đề h4
+
+- Gạch đầu dòng 1
+- Gạch đầu dòng 2
