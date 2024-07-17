@@ -8,3 +8,7 @@
 
 - Gạch đầu dòng 1
 - Gạch đầu dòng 2
+
+``` js
+console.log(123);
+```
