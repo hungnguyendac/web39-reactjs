@@ -1,5 +1,5 @@
 # web39-ReactJS 
-> Lưu ý: Bài 1
+> Note: `Nguyễn Đắc Hùng` Bài 1
 
 # Tiêu đề h1
 ## Tiêu đề h2
