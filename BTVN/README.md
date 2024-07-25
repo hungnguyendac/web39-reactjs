@@ -1,100 +1,99 @@
-# Câu 1: Làm thế nào để viết ghi chú (comments) trong ReactJS?
+# Câu 1: Props trong React là gì?
 
-- Ghi chú trong phần JavaScript: Dùng "//" cho ghi chú trên một dòng và " /* ... */ " cho ghi chú nhiều dòng.
+- Trong React, "props" là viết tắt của "properties" và chúng là một trong những cách quan trọng để truyền dữ liệu giữa các component. Props cho phép bạn truyền dữ liệu từ component cha (parent) xuống component con (child).
 
+- Dưới đây là một số điểm chính về props trong React:
+
+    1. Truyền Dữ Liệu: Props được sử dụng để truyền dữ liệu từ component cha xuống component con. Dữ liệu này có thể là bất kỳ giá trị nào, bao gồm số, chuỗi, mảng, đối tượng, hoặc thậm chí là các hàm.
+
+    2. Immutable: Props là immutable, nghĩa là chúng không thể bị thay đổi bởi component con. Component con chỉ có thể sử dụng các props được truyền vào mà không được thay đổi giá trị của chúng.
+
+    3. Sử dụng Props: Để truyền props, bạn thêm thuộc tính vào component con trong JSX của component cha. Trong component con, bạn có thể truy cập các props này thông qua đối tượng props.
+    Ví dụ:
 ``` js
-// Đây là một ghi chú trên một dòng
-const example = "Hello, World!";
-
-/*
-  Đây là một ghi chú trên nhiều dòng
-  Bạn có thể viết nhiều dòng ghi chú ở đây
-*/
-function sayHello() {
-  console.log(example);
+// Component cha
+const ParentComponent = () => {
+  const message = "Hello, World!";
+  return <ChildComponent greeting={message} />;
 }
-```
 
-- Ghi chú trong phần JSX: Dùng {/* ... */} để viết ghi chú trong JSX.
-
-``` js
-import React from 'react';
-
-function App() {
-  return (
-    <div>
-      {/* Đây là một ghi chú trong JSX */}
-      <h1>Hello, World!</h1>
-      
-      {/*
-        Đây là một ghi chú trên nhiều dòng trong JSX
-        Bạn có thể thêm nhiều thông tin ở đây
-      */}
-      <p>Welcome to my website</p>
-    </div>
-  );
+// Component con
+const ChildComponent = (props) => {
+  return <h1>{props.greeting}</h1>;
 }
 
 export default App;
 
 ```
+Trong ví dụ trên, component ParentComponent truyền giá trị của biến message dưới dạng props greeting đến component ChildComponent. Component ChildComponent sau đó truy cập và hiển thị giá trị của greeting thông qua props.
 
-# Câu 2: Ưu điểm của ReactJS là gì?
+    4. Prop Types: Để đảm bảo rằng component nhận đúng loại dữ liệu thông qua props, bạn có thể sử dụng thư viện PropTypes để xác định kiểu dữ liệu và tính bắt buộc của các props.
 
-## Virtual DOM:
-- React sử dụng Virtual DOM để cải thiện hiệu suất. Khi có sự thay đổi trong giao diện, React sẽ tạo ra một bản sao ảo của DOM, so sánh nó với bản DOM hiện tại (DOM thực) và chỉ cập nhật những phần thực sự thay đổi. Điều này giúp giảm thiểu số lượng thao tác trực tiếp trên DOM, giúp ứng dụng nhanh hơn.
+# Câu 2: Tại sao cần viết hoa các component?
 
-## Component-Based Architecture:
-- React cho phép phát triển ứng dụng bằng cách chia nhỏ giao diện thành các thành phần (component) có thể tái sử dụng. Mỗi thành phần tự quản lý trạng thái và logic riêng của nó, giúp mã nguồn trở nên dễ đọc, dễ quản lý và bảo trì.
+- Trong React, các component cần được viết hoa (capitalized) vì React dựa vào quy ước này để phân biệt giữa các phần tử DOM gốc và các component React do người dùng định nghĩa. Đây là lý do cụ thể tại sao:
 
-## One-Way Data Binding:
-- React sử dụng cách tiếp cận luồng dữ liệu một chiều, giúp dễ dàng theo dõi và kiểm soát trạng thái của ứng dụng. Điều này giúp cải thiện độ tin cậy và dễ dàng gỡ lỗi.
+  1. Phân biệt giữa các phần tử HTML và component React:
+      + Khi bạn viết một phần tử DOM gốc trong JSX (chẳng hạn như <div>, <span>, <p>), bạn sử dụng chữ thường.
+      + Khi bạn viết một component React, bạn sử dụng chữ hoa (chẳng hạn như <MyComponent>, <Header>, <Footer>).
+  Điều này giúp React dễ dàng phân biệt liệu một phần tử là một phần tử HTML gốc hay là một component tùy chỉnh.
 
-## JSX (JavaScript XML):
-- JSX là một cú pháp mở rộng của JavaScript, cho phép viết các phần tử HTML trong JavaScript. JSX giúp viết các thành phần React một cách dễ dàng và trực quan hơn, tạo ra một mã nguồn dễ đọc và dễ hiểu.
-
-## Strong Community and Ecosystem:
-- React có một cộng đồng lớn và mạnh mẽ, cung cấp nhiều tài liệu, công cụ, thư viện và hỗ trợ từ cộng đồng. Ngoài ra, React còn được hỗ trợ bởi Facebook, đảm bảo sự phát triển liên tục và ổn định.
-
-## Performance Optimization:
-- React cung cấp nhiều công cụ và kỹ thuật tối ưu hóa hiệu suất như lazy loading, memoization, và code splitting, giúp ứng dụng chạy mượt mà và hiệu quả hơn.
-
-## Compatibility with Other Libraries and Frameworks:
-- React có thể tích hợp dễ dàng với các thư viện và framework khác như Redux (quản lý trạng thái), React Router (điều hướng), và nhiều công cụ khác để xây dựng các ứng dụng phức tạp.
-
-## SEO-Friendly:
-- React có thể được kết hợp với các kỹ thuật như server-side rendering (SSR) hoặc static site generation (SSG) để cải thiện khả năng SEO của ứng dụng, giúp nội dung trang web được tải nhanh hơn và thân thiện với công cụ tìm kiếm hơn.
-
-## React Native:
-- React cũng có thể được sử dụng để phát triển ứng dụng di động thông qua React Native, giúp tận dụng kiến thức và mã nguồn React để phát triển các ứng dụng đa nền tảng (cross-platform).
+  2. Tự động nhận diện component:
+      + Nếu bạn không viết hoa tên component, React sẽ coi đó là một phần tử DOM gốc và sẽ cố gắng render một phần tử HTML với tên đó, điều này sẽ gây ra lỗi vì HTML không có các phần tử như <mycomponent>.
+  3. Quy ước nhất quán:
+      + Viết hoa component giúp giữ cho mã nguồn của bạn nhất quán và dễ đọc hơn. Những người khác đọc mã của bạn có thể dễ dàng nhận ra đâu là component React và đâu là phần tử HTML gốc.
 
 
-# Câu 3: Các tính năng chính của ReactJS là gì?
-- Virtual DOM
-- Component-Based Architecture
-- JSX (JavaScript XML)
-- One-Way Data Binding
-- React Hooks : React cung cấp các hook, cho phép sử dụng state và các tính năng khác của React mà không cần phải viết các class component. Các hook phổ biến như useState, useEffect, và useContext giúp quản lý trạng thái và các hiệu ứng phụ dễ dàng hơn.
-- Context API: Context API cho phép truyền dữ liệu qua các component mà không cần phải truyền qua từng cấp của component tree. Điều này hữu ích cho việc quản lý trạng thái toàn cục, chẳng hạn như theme, ngôn ngữ, hoặc thông tin người dùng đăng nhập.
-- React Router : React Router là một thư viện điều hướng (routing) phổ biến trong React, giúp tạo ra các ứng dụng web có nhiều trang. Nó cho phép điều hướng giữa các trang mà không cần tải lại trang, giữ cho trải nghiệm người dùng mượt mà.
-- Server-Side Rendering (SSR)
-- React Native
+# Câu 3: Fragment là gì?
+- Trong React, Fragment là một thành phần cho phép bạn nhóm một danh sách các con (children) mà không cần phải thêm các phần tử không cần thiết vào DOM. Điều này rất hữu ích khi bạn muốn trả về nhiều phần tử từ một component mà không muốn bọc chúng trong một thẻ HTML như <div>, <span>, v.v.
+
+- Dưới đây là một số đặc điểm chính của Fragment:
+
+  + Không thêm thẻ bao bọc vào DOM: Sử dụng Fragment giúp bạn tránh việc thêm các thẻ HTML không cần thiết vào cây DOM, giúp cấu trúc HTML gọn gàng hơn.
+
+  + Cú pháp ngắn gọn: React cung cấp cú pháp rút gọn cho Fragment bằng cách sử dụng các thẻ trống (<> và </>), giúp mã nguồn trở nên ngắn gọn hơn.
+
+  + Tránh các vấn đề về CSS và layout: Khi thêm các thẻ không cần thiết, bạn có thể gặp phải các vấn đề về CSS và layout. Sử dụng Fragment giúp tránh các vấn đề này vì nó không thêm bất kỳ thẻ nào vào DOM.
+
+  + Hiệu suất: Mặc dù sự khác biệt về hiệu suất có thể không đáng kể trong hầu hết các trường hợp, nhưng việc tránh các thẻ không cần thiết có thể cải thiện hiệu suất trong các ứng dụng lớn hoặc phức tạp.
 
 
-# Câu 4: Phân biệt Real DOM và Virtual DOM ?
+# Câu 4: Sự khác biệt giữa “Element” và “Component” trong React?
 
-## Cấu trúc
-- Real Dom : Cây DOM thực, phần tử HTML thực
-- Virtual DOM : Cây DOM ảo, tồn tại trong bộ nhớ
+## React Element
+- Định nghĩa: Một React Element là khối cơ bản nhất của React. Nó đại diện cho một node trong DOM. React Element là đối tượng JavaScript đơn giản mô tả một thẻ DOM hoặc một component React với các thuộc tính và con của nó.
 
-## Cập nhật
-- Real Dom : Cập nhật và render lại toàn bộ
-- Virtual DOM : Cập nhật Virtual DOM trước, sau đó diff và cập nhật Real DOM
+- Tạo ra: Bạn thường không tạo trực tiếp các React Element mà thay vào đó sử dụng JSX. Khi JSX được biên dịch, nó tạo ra các React Element.
 
-## Hiệu suất
-- Real Dom : Tốn kém hiệu suất khi cập nhật
-- Virtual DOM : Tối ưu hóa hiệu suất, chỉ cập nhật phần thay đổi
+- Immutable: React Elements là immutable, có nghĩa là sau khi được tạo ra, chúng không thể thay đổi. Mọi thay đổi yêu cầu tạo ra một element mới.
+Ví dụ:
+```js
+const element = <div className="greeting">Hello, world!</div>;
+```
 
-## Áp dụng thay đổi
-- Real Dom : Trực tiếp
-- Virtual DOM : Gián tiếp thông qua Virtual DOM
+## React Component
+- Định nghĩa: Một React Component là một hàm hoặc một lớp có thể nhận đầu vào (props) và trả về các React Element.Components cho phép bạn chia ứng dụng thành các phần nhỏ, tái sử dụng được.
+- Tạo ra: Có hai loại component chính: Functional Components và Class Components.
+Functional Components: Được định nghĩa như là các hàm JavaScript. Bắt đầu từ React 16.8, hooks cho phép functional components có trạng thái và sử dụng các lifecycle methods.
+  + Functional Components: Được định nghĩa như là các hàm JavaScript. Bắt đầu từ React 16.8, hooks cho phép functional components có trạng thái và sử dụng các lifecycle methods.
+  ```js
+    function Greeting(props) {
+      return <h1>Hello, {props.name}</h1>;
+    }
+  ```
+  + Class Components: Được định nghĩa như là các lớp JavaScript mở rộng từ React.Component. Class components có thể có trạng thái và sử dụng các lifecycle methods.
+  ```js
+    class Greeting extends React.Component {
+    render() {
+        return <h1>Hello, {this.props.name}</h1>;
+      }
+    }
+
+  ```
+- Reusable: Components có thể tái sử dụng, kết hợp và lồng nhau để xây dựng các giao diện phức tạp.
+- State và Lifecycle: Components có thể có trạng thái (state) và sử dụng các phương thức vòng đời (lifecycle methods) để quản lý trạng thái và side effects.
+
+
+## Tóm tắt sự khác biệt
+- React Element là đối tượng mô tả cấu trúc giao diện và không thể thay đổi sau khi tạo.
+- React Component là các hàm hoặc lớp có thể chấp nhận đầu vào (props) và trả về các React Element. Components có thể có trạng thái và quản lý vòng đời.
