@@ -1,99 +1,56 @@
-# Câu 1: Props trong React là gì?
+# Câu 1: State được lưu ở đâu trong ứng dụng React + Redux?
 
-- Trong React, "props" là viết tắt của "properties" và chúng là một trong những cách quan trọng để truyền dữ liệu giữa các component. Props cho phép bạn truyền dữ liệu từ component cha (parent) xuống component con (child).
+1. Component State (State trong Component): Đây là state nội bộ của từng component. Được quản lý bằng hook useState trong các function component hoặc bằng this.state trong các class component. State này chỉ tồn tại trong phạm vi của component đó và không thể chia sẻ trực tiếp với các component khác.
 
-- Dưới đây là một số điểm chính về props trong React:
+2. Redux Store (State trong Redux): Đây là nơi lưu trữ global state của ứng dụng, có thể chia sẻ và truy cập từ bất kỳ component nào trong ứng dụng. Redux store được tạo ra bằng cách sử dụng createStore từ thư viện Redux.
 
-    1. Truyền Dữ Liệu: Props được sử dụng để truyền dữ liệu từ component cha xuống component con. Dữ liệu này có thể là bất kỳ giá trị nào, bao gồm số, chuỗi, mảng, đối tượng, hoặc thậm chí là các hàm.
+3. Context API (State trong Context): Context API của React cũng có thể được sử dụng để quản lý global state, tương tự như Redux nhưng thường được sử dụng cho các ứng dụng nhỏ hoặc state không quá phức tạp.
 
-    2. Immutable: Props là immutable, nghĩa là chúng không thể bị thay đổi bởi component con. Component con chỉ có thể sử dụng các props được truyền vào mà không được thay đổi giá trị của chúng.
-
-    3. Sử dụng Props: Để truyền props, bạn thêm thuộc tính vào component con trong JSX của component cha. Trong component con, bạn có thể truy cập các props này thông qua đối tượng props.
-    Ví dụ:
-``` js
-// Component cha
-const ParentComponent = () => {
-  const message = "Hello, World!";
-  return <ChildComponent greeting={message} />;
-}
-
-// Component con
-const ChildComponent = (props) => {
-  return <h1>{props.greeting}</h1>;
-}
-
-export default App;
-
-```
-Trong ví dụ trên, component ParentComponent truyền giá trị của biến message dưới dạng props greeting đến component ChildComponent. Component ChildComponent sau đó truy cập và hiển thị giá trị của greeting thông qua props.
-
-4. Prop Types: Để đảm bảo rằng component nhận đúng loại dữ liệu thông qua props, bạn có thể sử dụng thư viện PropTypes để xác định kiểu dữ liệu và tính bắt buộc của các props.
-
-# Câu 2: Tại sao cần viết hoa các component?
-
-- Trong React, các component cần được viết hoa (capitalized) vì React dựa vào quy ước này để phân biệt giữa các phần tử DOM gốc và các component React do người dùng định nghĩa. Đây là lý do cụ thể tại sao:
-
-  1. Phân biệt giữa các phần tử HTML và component React:
-      + Khi bạn viết một phần tử DOM gốc trong JSX (chẳng hạn như <div>, <span>, <p>), bạn sử dụng chữ thường.
-      + Khi bạn viết một component React, bạn sử dụng chữ hoa (chẳng hạn như <MyComponent>, <Header>, <Footer>).
-  Điều này giúp React dễ dàng phân biệt liệu một phần tử là một phần tử HTML gốc hay là một component tùy chỉnh.
-
-  2. Tự động nhận diện component:
-      + Nếu bạn không viết hoa tên component, React sẽ coi đó là một phần tử DOM gốc và sẽ cố gắng render một phần tử HTML với tên đó, điều này sẽ gây ra lỗi vì HTML không có các phần tử như <mycomponent>.
-  3. Quy ước nhất quán:
-      + Viết hoa component giúp giữ cho mã nguồn của bạn nhất quán và dễ đọc hơn. Những người khác đọc mã của bạn có thể dễ dàng nhận ra đâu là component React và đâu là phần tử HTML gốc.
+4. Local Storage / Session Storage: Mặc dù không phải là một phần của React hoặc Redux, Local Storage và Session Storage của trình duyệt cũng có thể được sử dụng để lưu trữ dữ liệu cần thiết giữa các lần tải trang.
 
 
-# Câu 3: Fragment là gì?
-- Trong React, Fragment là một thành phần cho phép bạn nhóm một danh sách các con (children) mà không cần phải thêm các phần tử không cần thiết vào DOM. Điều này rất hữu ích khi bạn muốn trả về nhiều phần tử từ một component mà không muốn bọc chúng trong một thẻ HTML như <div>, <span>, v.v.
 
-- Dưới đây là một số đặc điểm chính của Fragment:
+# Câu 2: Điểm mấu chốt (mạnh nhất) của Redux là gì?
+Điểm mấu chốt (mạnh nhất) của Redux chính là quản lý state một cách nhất quán và dự đoán được trong các ứng dụng lớn và phức tạp. Đây là những điểm mạnh chính của Redux:
 
-  + Không thêm thẻ bao bọc vào DOM: Sử dụng Fragment giúp bạn tránh việc thêm các thẻ HTML không cần thiết vào cây DOM, giúp cấu trúc HTML gọn gàng hơn.
+- Single Source of Truth (Nguồn sự thật duy nhất): Toàn bộ state của ứng dụng được lưu trữ trong một object tree duy nhất gọi là store. Điều này giúp dễ dàng quản lý và theo dõi trạng thái của ứng dụng.
 
-  + Cú pháp ngắn gọn: React cung cấp cú pháp rút gọn cho Fragment bằng cách sử dụng các thẻ trống (<> và </>), giúp mã nguồn trở nên ngắn gọn hơn.
+- State là chỉ-read (Read-only State): State trong Redux chỉ có thể được thay đổi bằng cách gửi một action. Điều này đảm bảo rằng các thay đổi state luôn có thể dự đoán và theo dõi được.
 
-  + Tránh các vấn đề về CSS và layout: Khi thêm các thẻ không cần thiết, bạn có thể gặp phải các vấn đề về CSS và layout. Sử dụng Fragment giúp tránh các vấn đề này vì nó không thêm bất kỳ thẻ nào vào DOM.
+- Changes are Made with Pure Functions (Thay đổi được thực hiện bằng các hàm thuần): Reducer là các hàm thuần (pure functions) nhận vào state hiện tại và một action, sau đó trả về state mới. Điều này giúp các thay đổi trở nên dễ dàng kiểm thử và dự đoán.
 
-  + Hiệu suất: Mặc dù sự khác biệt về hiệu suất có thể không đáng kể trong hầu hết các trường hợp, nhưng việc tránh các thẻ không cần thiết có thể cải thiện hiệu suất trong các ứng dụng lớn hoặc phức tạp.
+- Predictability of Outcome (Tính dự đoán được của kết quả): Bởi vì state chỉ có thể thay đổi thông qua các action và reducer, bạn có thể dễ dàng dự đoán kết quả của bất kỳ thay đổi nào trong state. Điều này cũng giúp việc debug trở nên dễ dàng hơn.
+
+- Centralized Debugging (Debug tập trung): Với các công cụ như Redux DevTools, bạn có thể theo dõi tất cả các thay đổi của state trong thời gian thực, thực hiện time-travel debugging, và kiểm thử ứng dụng một cách hiệu quả.
+
+- Middleware: Redux hỗ trợ middleware, cho phép bạn can thiệp vào quá trình dispatch action. Middleware có thể được sử dụng để xử lý các side effects như async actions (ví dụ: redux-thunk, redux-saga) hoặc để logging, crash reporting, v.v.
+
+- Ecosystem (Hệ sinh thái): Redux có một hệ sinh thái phong phú với nhiều thư viện và công cụ hỗ trợ, giúp việc phát triển các ứng dụng phức tạp trở nên dễ dàng hơn.
 
 
-# Câu 4: Sự khác biệt giữa “Element” và “Component” trong React?
+# Câu 3: Các middleware thường được chọn để xử lý các lời gọi bất đồng bộ trong Redux là gì?
 
-## React Element
-- Định nghĩa: Một React Element là khối cơ bản nhất của React. Nó đại diện cho một node trong DOM. React Element là đối tượng JavaScript đơn giản mô tả một thẻ DOM hoặc một component React với các thuộc tính và con của nó.
+1. redux-thunk
+2. redux-saga
+3. redux-observable
+4. redux-promise
 
-- Tạo ra: Bạn thường không tạo trực tiếp các React Element mà thay vào đó sử dụng JSX. Khi JSX được biên dịch, nó tạo ra các React Element.
+# Câu 4: Redux Thunk được sử dụng để làm gì?
 
-- Immutable: React Elements là immutable, có nghĩa là sau khi được tạo ra, chúng không thể thay đổi. Mọi thay đổi yêu cầu tạo ra một element mới.
-Ví dụ:
+- Redux Thunk được sử dụng để xử lý logic bất đồng bộ trong các ứng dụng Redux. Cụ thể, nó cho phép bạn viết các action creators trả về các hàm thay vì trả về các action objects. Các hàm này có thể thực hiện các tác vụ bất đồng bộ như gọi API, dispatch các action khác khi nhận được phản hồi, hoặc thực hiện bất kỳ logic bất đồng bộ nào trước khi dispatch action đồng bộ.
+- Ví dụ: Sử dụng Redux Thunk để thực hiện một yêu cầu API và dispatch kết quả:
+
 ```js
-const element = <div className="greeting">Hello, world!</div>;
+  // action.js
+export const fetchData = () => {
+  return dispatch => {
+    dispatch({ type: 'FETCH_DATA_REQUEST' });
+
+    fetch('https://api.example.com/data')
+      .then(response => response.json())
+      .then(data => dispatch({ type: 'FETCH_DATA_SUCCESS', payload: data }))
+      .catch(error => dispatch({ type: 'FETCH_DATA_FAILURE', payload: error }));
+  };
+};
 ```
-
-## React Component
-- Định nghĩa: Một React Component là một hàm hoặc một lớp có thể nhận đầu vào (props) và trả về các React Element.Components cho phép bạn chia ứng dụng thành các phần nhỏ, tái sử dụng được.
-- Tạo ra: Có hai loại component chính: Functional Components và Class Components.
-Functional Components: Được định nghĩa như là các hàm JavaScript. Bắt đầu từ React 16.8, hooks cho phép functional components có trạng thái và sử dụng các lifecycle methods.
-  + Functional Components: Được định nghĩa như là các hàm JavaScript. Bắt đầu từ React 16.8, hooks cho phép functional components có trạng thái và sử dụng các lifecycle methods.
-  ```js
-    function Greeting(props) {
-      return <h1>Hello, {props.name}</h1>;
-    }
-  ```
-  + Class Components: Được định nghĩa như là các lớp JavaScript mở rộng từ React.Component. Class components có thể có trạng thái và sử dụng các lifecycle methods.
-  ```js
-    class Greeting extends React.Component {
-    render() {
-        return <h1>Hello, {this.props.name}</h1>;
-      }
-    }
-
-  ```
-- Reusable: Components có thể tái sử dụng, kết hợp và lồng nhau để xây dựng các giao diện phức tạp.
-- State và Lifecycle: Components có thể có trạng thái (state) và sử dụng các phương thức vòng đời (lifecycle methods) để quản lý trạng thái và side effects.
-
-
-## Tóm tắt sự khác biệt
-- React Element là đối tượng mô tả cấu trúc giao diện và không thể thay đổi sau khi tạo.
-- React Component là các hàm hoặc lớp có thể chấp nhận đầu vào (props) và trả về các React Element. Components có thể có trạng thái và quản lý vòng đời.
+- Trong ví dụ này, fetchData là một thunk action creator trả về một hàm thay vì một object. Hàm này thực hiện một yêu cầu API, sau đó dispatch các action dựa trên kết quả của yêu cầu đó.
