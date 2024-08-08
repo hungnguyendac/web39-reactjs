@@ -27,7 +27,7 @@ export default App;
 ```
 Trong ví dụ trên, component ParentComponent truyền giá trị của biến message dưới dạng props greeting đến component ChildComponent. Component ChildComponent sau đó truy cập và hiển thị giá trị của greeting thông qua props.
 
-    4. Prop Types: Để đảm bảo rằng component nhận đúng loại dữ liệu thông qua props, bạn có thể sử dụng thư viện PropTypes để xác định kiểu dữ liệu và tính bắt buộc của các props.
+4. Prop Types: Để đảm bảo rằng component nhận đúng loại dữ liệu thông qua props, bạn có thể sử dụng thư viện PropTypes để xác định kiểu dữ liệu và tính bắt buộc của các props.
 
 # Câu 2: Tại sao cần viết hoa các component?
 
