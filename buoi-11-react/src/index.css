@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+    h2 {
+        @apply text-green-500;
+    }
+}
+
+@layer components {
+    .card {
+        @apply w-[500px] h-[100px] bg-black
+    }
+}
+
+@layer utilities {
+    .web-39 {
+        width: 100px;
+        height: 200px;
+        background-color: aqua;
+    }
+}
+
+/* 
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+=> Cú pháp giúp custom và tối ưu các style của tailwind base
+
+- @tailwind base: Setup những thành phần cơ bản trên trang.
+
+- @tailwind components: Setup những thành phần được sử dụng nhiều lần
+trên trang nhưng phức tạp hơn.
+
+- @tailwind utilities: Setup những thành phần do mình tự định nghĩa css (css thuần)
+
+*/
