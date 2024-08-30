@@ -1,0 +1,12 @@
+CREATE TABLE [category_products] (
+  [id] bigint(20) UNSIGNED NOT NULL,
+  [cpr_name] varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  [cpr_slug] varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  [cpr_sort] tinyint(4) DEFAULT NULL,
+  [cpr_hot] tinyint(4) DEFAULT NULL,
+  [cpr_type] tinyint(4) DEFAULT NULL,
+  [cpr_parent_id] int(11) DEFAULT NULL,
+  [cpr_active] int(11) DEFAULT NULL,
+  [created_at] timestamp NULL DEFAULT current_timestamp(),
+  [updated_at] timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

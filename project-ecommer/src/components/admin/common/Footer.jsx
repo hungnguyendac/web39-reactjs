@@ -9,7 +9,7 @@ const FooterAdmin = () => {
                         <p className="copyright-text">
                             Copyright © Convert React - Design:{" "}
                             <a rel="sponsored" href="/" target="_blank">
-                                Thuan Nguyen
+                                Hung Nguyen Dac
                             </a>
                         </p>
                     </div>

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { urlProducts } from "../../../untils/variable";
 import { Bounce, toast } from "react-toastify";
 
-const DeleteButtonDashBoard = ({id}) => {
+const DeleteButtonDashBoard = ({id, removeItem}) => {
 
     const [isLoading, setIsLoading] = useState(false);
 
@@ -13,6 +13,10 @@ const DeleteButtonDashBoard = ({id}) => {
                 setIsLoading(true); // Chuẩn bị xóa
                 const res = await axios.delete(urlProducts + "/" + id);
                 setIsLoading(false); // Xóa xong rồi
+
+                // Cập nhật lại dữ liệu data listing
+                removeItem(id);
+
                 toast.success("🦄 Xóa thành công!", {
                     position: "top-right",
                     autoClose: 5000,

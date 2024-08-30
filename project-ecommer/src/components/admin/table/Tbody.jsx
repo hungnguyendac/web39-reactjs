@@ -1,13 +1,13 @@
 import React from "react";
 import EditButtonDashBoard from "./EditButton";
 import DeleteButtonDashBoard from "./DeleteButton";
+import { Link } from "react-router-dom";
 
-const TbodyDashboard = ({ data }) => {
+const TbodyDashboard = ({ data, removeItem}) => {
     
     return (
         <tbody>
-            {data.length > 0 && data.map((product) => {
-                
+            {data.length > 0 && data.map((product) => {                
                 return (
                     <tr key={product.id}>
                         <td scope="row">{product.id}</td>
@@ -17,10 +17,15 @@ const TbodyDashboard = ({ data }) => {
                             {product.price} VNĐ
                         </td>
                         <td scope="row">
-                            <EditButtonDashBoard/>
+                            <Link to={`/dashboard/product/edit/${product.id}`}>
+                                <EditButtonDashBoard />
+                            </Link>
                         </td>
                         <td scope="row">
-                            <DeleteButtonDashBoard id={product.id}/>
+                            <DeleteButtonDashBoard
+                                id={product.id}
+                                removeItem={removeItem}
+                            />
                         </td>
                     </tr>
                 );

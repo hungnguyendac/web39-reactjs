@@ -13,6 +13,8 @@ import Login from "./pages/auth/Login";
 import "./assets/config/tailwind.css";
 import IsAuth from "./components/auth/IsAuth";
 import DBProduct from "./pages/admin/DBProduct";
+import CreateProduct from "./pages/admin/CreateProduct";
+import EditProduct from "./pages/admin/EditProduct";
 
 const App = () => {
     return (
@@ -26,9 +28,20 @@ const App = () => {
 
                 <Route path="/login" element={<Login />} />
 
-                <Route path="/dashboard" element={<IsAuth component={<LayoutAdmin />} />}>
+                <Route
+                    path="/dashboard"
+                    element={<IsAuth component={<LayoutAdmin />} />}
+                >
                     <Route index element={<Dashboard />} />
-                    <Route path="/dashboard/product" element={<DBProduct />}/>
+                    <Route path="/dashboard/product" element={<DBProduct />} />
+                    <Route
+                        path="/dashboard/product/add"
+                        element={<CreateProduct />}
+                    />
+                    <Route
+                        path="/dashboard/product/edit/:id"
+                        element={<EditProduct />}
+                    />
                 </Route>
             </Routes>
         </BrowserRouter>
