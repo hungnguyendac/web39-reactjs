@@ -7,6 +7,9 @@ const Header = () => {
                 <Link className="navbar-brand" to="/">
                     Home
                 </Link>
+                <Link className="navbar-brand" to="/dashboard">
+                    Dashboard
+                </Link>
                 <button
                     className="navbar-toggler"
                     type="button"
